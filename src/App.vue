@@ -10,7 +10,7 @@
 
     <main>
       <h2>Leiame Su sprindile ta järgmise nime!</h2>
-      <button type="button" @click="generateIndex">Genereeri</button>
+      <button type="button" @click="refresh">Genereeri</button>
 
       <pre>
         <transition name="fade">
@@ -24,33 +24,20 @@
 </template>
 
 <script>
-import movieList from './movieList'
 import Links from './components/Links.vue'
+import generateName from './index'
 
 export default {
   name: 'app',
   components: { Links },
   data () {
     return {
-      random: 1,
-      lastRandom: 0,
-      listLen: movieList.length
+      sprintName: generateName()
     }
-  },
-  computed: {
-    sprintName () {
-      return movieList[this.random]
-    }
-  },
-  created () {
-    this.generateIndex()
   },
   methods: {
-    generateIndex () {
-      this.lastRandom = this.random
-      this.random = Math.floor(Math.random() * this.listLen)
-
-      this.lastRandom === this.random && this.generateIndex()
+    refresh () {
+      this.sprintName = generateName()
     }
   }
 }
