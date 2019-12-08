@@ -8,7 +8,7 @@ const getRandomName = () => {
   lastRandom = random
   random = Math.floor(Math.random() * length)
 
-  if (lastRandom === random) getRandomName()
+  if (lastRandom === random) return getRandomName()
   else return list[random]
 }
 
